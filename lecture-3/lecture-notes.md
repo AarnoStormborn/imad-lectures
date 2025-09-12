@@ -10,7 +10,7 @@
 6. Setting up django apps
 7. Designing URLs
 8. Setting up templates & jinja
-9. Connecting Models, Views, Templates
+9. Models & Migrations
 
 
 ## Setting up a Django project (revisit from lecture 2)
@@ -57,4 +57,38 @@ PLEASE FOLLOW THIS PRACTICE WIHTOUT FAIL. **VERY CRUCIAL**
 * ORM: Object-Relational Mapper that is a set of django in-built modules that help you interact with the database. This connects Views with Models.
 * Templates: HTML files that display the information using Jinja, python's template engine
 * URL: Uniform Resource Locator that maps templates with views. Users use URL to access specific templates
+
+## Setting up Django apps
+
+Django follows a monolithic architecture, which means it hosts all the backend and frontend code on a single server. So to handle separation of concern, django uses 'apps'. An app is a single module that consists of Models and Views related to one topic / concern.
+
+### To create an app
+
+`django-admin startapp <app_name>`
+
+Once apps are create, in settings.py, add the name of the app to `INSTALLED_APPS`. This allows the Django HQ to recognize the app as a part of its system.
+
+
+## Designing URLs
+
+A Uniform Resource Locator (URL) creates a map to every view. A single URL maps to a single view that allows users to access them. URLs are managed at two levels in Django
+
+1. `<main_project_directory>/urls.py` : Here we define urls that are at the "upper" level of the application. Each url in this file connects to a set of urls in specific apps. We use the `include()` function to map to app urls
+2. `<app_directory/urls.py>`: Connect each path to a view
+
+## Setting up Django Templates
+
+Templates refer to the HTML files combined with Jinja. The templating engine allows for dynamic population of data. The engine allows using advanced capabilites that would not work with HTML files otherwise. Here are some tags that we used:
+
+- {% load static %} - Loads all static files that allow using static file paths
+- {% block name %}{% endblock name %} - Creating blocks of content to use in other files
+- {% extends filename %} - Extend skeletal structure of base HTML files
+- {% for element in elements %}{% endfor %} - For loop
+- {% url 'url' %} - Using url names in anchor tag href
+- {% static 'static_file_path' %} - paths to static files
+- {{ data }} - populate data sent from a view
+
+### Common practise
+
+Extracting head, footer, nav and create a base or common html file. Extend this file into other files and use block tags
 
