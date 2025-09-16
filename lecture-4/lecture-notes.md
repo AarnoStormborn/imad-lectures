@@ -1,5 +1,7 @@
 # Intro to Modern App dev - Lecture **4**
 
+The complete blog project implementation is available. Please go through it.
+
 ## Lecture Sumamry
 
 1. Revisit to MVT, URL, ORM (see Lecture 3 notes)
